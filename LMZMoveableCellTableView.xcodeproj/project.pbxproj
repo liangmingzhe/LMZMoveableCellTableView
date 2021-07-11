@@ -1,0 +1,610 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EE41A9D82699C9AC009AE9F9 /* LMZMoveableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE41A9D72699C9AC009AE9F9 /* LMZMoveableTableView.swift */; };
+		EE41A9E6269AC2C5009AE9F9 /* LCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE41A9E4269AC2C5009AE9F9 /* LCTableViewCell.swift */; };
+		EE41A9E7269AC2C5009AE9F9 /* LCTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE41A9E5269AC2C5009AE9F9 /* LCTableViewCell.xib */; };
+		EEE6A3F42694B0B900E53669 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE6A3F32694B0B900E53669 /* AppDelegate.swift */; };
+		EEE6A3F62694B0B900E53669 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE6A3F52694B0B900E53669 /* SceneDelegate.swift */; };
+		EEE6A3F82694B0B900E53669 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE6A3F72694B0B900E53669 /* ViewController.swift */; };
+		EEE6A3FB2694B0B900E53669 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEE6A3F92694B0B900E53669 /* Main.storyboard */; };
+		EEE6A3FD2694B0BE00E53669 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEE6A3FC2694B0BE00E53669 /* Assets.xcassets */; };
+		EEE6A4002694B0BE00E53669 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEE6A3FE2694B0BE00E53669 /* LaunchScreen.storyboard */; };
+		EEE6A40B2694B0BE00E53669 /* LMZMoveableCellTableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE6A40A2694B0BE00E53669 /* LMZMoveableCellTableViewTests.swift */; };
+		EEE6A4162694B0BE00E53669 /* LMZMoveableCellTableViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE6A4152694B0BE00E53669 /* LMZMoveableCellTableViewUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EEE6A4072694B0BE00E53669 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EEE6A3E82694B0B900E53669 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EEE6A3EF2694B0B900E53669;
+			remoteInfo = LMZMoveableCellTableView;
+		};
+		EEE6A4122694B0BE00E53669 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EEE6A3E82694B0B900E53669 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EEE6A3EF2694B0B900E53669;
+			remoteInfo = LMZMoveableCellTableView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EE41A9D72699C9AC009AE9F9 /* LMZMoveableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMZMoveableTableView.swift; sourceTree = "<group>"; };
+		EE41A9E4269AC2C5009AE9F9 /* LCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCTableViewCell.swift; sourceTree = "<group>"; };
+		EE41A9E5269AC2C5009AE9F9 /* LCTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LCTableViewCell.xib; sourceTree = "<group>"; };
+		EEE6A3F02694B0B900E53669 /* LMZMoveableCellTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LMZMoveableCellTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEE6A3F32694B0B900E53669 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EEE6A3F52694B0B900E53669 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		EEE6A3F72694B0B900E53669 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EEE6A3FA2694B0B900E53669 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EEE6A3FC2694B0BE00E53669 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EEE6A3FF2694B0BE00E53669 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EEE6A4012694B0BE00E53669 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEE6A4062694B0BE00E53669 /* LMZMoveableCellTableViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LMZMoveableCellTableViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEE6A40A2694B0BE00E53669 /* LMZMoveableCellTableViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMZMoveableCellTableViewTests.swift; sourceTree = "<group>"; };
+		EEE6A40C2694B0BE00E53669 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEE6A4112694B0BE00E53669 /* LMZMoveableCellTableViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LMZMoveableCellTableViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEE6A4152694B0BE00E53669 /* LMZMoveableCellTableViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMZMoveableCellTableViewUITests.swift; sourceTree = "<group>"; };
+		EEE6A4172694B0BE00E53669 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EEE6A3ED2694B0B900E53669 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEE6A4032694B0BE00E53669 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEE6A40E2694B0BE00E53669 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EEE6A3E72694B0B900E53669 = {
+			isa = PBXGroup;
+			children = (
+				EEE6A3F22694B0B900E53669 /* LMZMoveableCellTableView */,
+				EEE6A4092694B0BE00E53669 /* LMZMoveableCellTableViewTests */,
+				EEE6A4142694B0BE00E53669 /* LMZMoveableCellTableViewUITests */,
+				EEE6A3F12694B0B900E53669 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EEE6A3F12694B0B900E53669 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EEE6A3F02694B0B900E53669 /* LMZMoveableCellTableView.app */,
+				EEE6A4062694B0BE00E53669 /* LMZMoveableCellTableViewTests.xctest */,
+				EEE6A4112694B0BE00E53669 /* LMZMoveableCellTableViewUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EEE6A3F22694B0B900E53669 /* LMZMoveableCellTableView */ = {
+			isa = PBXGroup;
+			children = (
+				EEE6A3F32694B0B900E53669 /* AppDelegate.swift */,
+				EEE6A3F52694B0B900E53669 /* SceneDelegate.swift */,
+				EEE6A3F72694B0B900E53669 /* ViewController.swift */,
+				EE41A9D72699C9AC009AE9F9 /* LMZMoveableTableView.swift */,
+				EE41A9E4269AC2C5009AE9F9 /* LCTableViewCell.swift */,
+				EE41A9E5269AC2C5009AE9F9 /* LCTableViewCell.xib */,
+				EEE6A3F92694B0B900E53669 /* Main.storyboard */,
+				EEE6A3FC2694B0BE00E53669 /* Assets.xcassets */,
+				EEE6A3FE2694B0BE00E53669 /* LaunchScreen.storyboard */,
+				EEE6A4012694B0BE00E53669 /* Info.plist */,
+			);
+			path = LMZMoveableCellTableView;
+			sourceTree = "<group>";
+		};
+		EEE6A4092694B0BE00E53669 /* LMZMoveableCellTableViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				EEE6A40A2694B0BE00E53669 /* LMZMoveableCellTableViewTests.swift */,
+				EEE6A40C2694B0BE00E53669 /* Info.plist */,
+			);
+			path = LMZMoveableCellTableViewTests;
+			sourceTree = "<group>";
+		};
+		EEE6A4142694B0BE00E53669 /* LMZMoveableCellTableViewUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EEE6A4152694B0BE00E53669 /* LMZMoveableCellTableViewUITests.swift */,
+				EEE6A4172694B0BE00E53669 /* Info.plist */,
+			);
+			path = LMZMoveableCellTableViewUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EEE6A3EF2694B0B900E53669 /* LMZMoveableCellTableView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EEE6A41A2694B0BE00E53669 /* Build configuration list for PBXNativeTarget "LMZMoveableCellTableView" */;
+			buildPhases = (
+				EEE6A3EC2694B0B900E53669 /* Sources */,
+				EEE6A3ED2694B0B900E53669 /* Frameworks */,
+				EEE6A3EE2694B0B900E53669 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LMZMoveableCellTableView;
+			productName = LMZMoveableCellTableView;
+			productReference = EEE6A3F02694B0B900E53669 /* LMZMoveableCellTableView.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EEE6A4052694B0BE00E53669 /* LMZMoveableCellTableViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EEE6A41D2694B0BE00E53669 /* Build configuration list for PBXNativeTarget "LMZMoveableCellTableViewTests" */;
+			buildPhases = (
+				EEE6A4022694B0BE00E53669 /* Sources */,
+				EEE6A4032694B0BE00E53669 /* Frameworks */,
+				EEE6A4042694B0BE00E53669 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EEE6A4082694B0BE00E53669 /* PBXTargetDependency */,
+			);
+			name = LMZMoveableCellTableViewTests;
+			productName = LMZMoveableCellTableViewTests;
+			productReference = EEE6A4062694B0BE00E53669 /* LMZMoveableCellTableViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EEE6A4102694B0BE00E53669 /* LMZMoveableCellTableViewUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EEE6A4202694B0BE00E53669 /* Build configuration list for PBXNativeTarget "LMZMoveableCellTableViewUITests" */;
+			buildPhases = (
+				EEE6A40D2694B0BE00E53669 /* Sources */,
+				EEE6A40E2694B0BE00E53669 /* Frameworks */,
+				EEE6A40F2694B0BE00E53669 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EEE6A4132694B0BE00E53669 /* PBXTargetDependency */,
+			);
+			name = LMZMoveableCellTableViewUITests;
+			productName = LMZMoveableCellTableViewUITests;
+			productReference = EEE6A4112694B0BE00E53669 /* LMZMoveableCellTableViewUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EEE6A3E82694B0B900E53669 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					EEE6A3EF2694B0B900E53669 = {
+						CreatedOnToolsVersion = 12.0.1;
+					};
+					EEE6A4052694B0BE00E53669 = {
+						CreatedOnToolsVersion = 12.0.1;
+						TestTargetID = EEE6A3EF2694B0B900E53669;
+					};
+					EEE6A4102694B0BE00E53669 = {
+						CreatedOnToolsVersion = 12.0.1;
+						TestTargetID = EEE6A3EF2694B0B900E53669;
+					};
+				};
+			};
+			buildConfigurationList = EEE6A3EB2694B0B900E53669 /* Build configuration list for PBXProject "LMZMoveableCellTableView" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EEE6A3E72694B0B900E53669;
+			productRefGroup = EEE6A3F12694B0B900E53669 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EEE6A3EF2694B0B900E53669 /* LMZMoveableCellTableView */,
+				EEE6A4052694B0BE00E53669 /* LMZMoveableCellTableViewTests */,
+				EEE6A4102694B0BE00E53669 /* LMZMoveableCellTableViewUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EEE6A3EE2694B0B900E53669 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEE6A4002694B0BE00E53669 /* LaunchScreen.storyboard in Resources */,
+				EEE6A3FD2694B0BE00E53669 /* Assets.xcassets in Resources */,
+				EE41A9E7269AC2C5009AE9F9 /* LCTableViewCell.xib in Resources */,
+				EEE6A3FB2694B0B900E53669 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEE6A4042694B0BE00E53669 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEE6A40F2694B0BE00E53669 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EEE6A3EC2694B0B900E53669 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE41A9E6269AC2C5009AE9F9 /* LCTableViewCell.swift in Sources */,
+				EE41A9D82699C9AC009AE9F9 /* LMZMoveableTableView.swift in Sources */,
+				EEE6A3F82694B0B900E53669 /* ViewController.swift in Sources */,
+				EEE6A3F42694B0B900E53669 /* AppDelegate.swift in Sources */,
+				EEE6A3F62694B0B900E53669 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEE6A4022694B0BE00E53669 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEE6A40B2694B0BE00E53669 /* LMZMoveableCellTableViewTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEE6A40D2694B0BE00E53669 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEE6A4162694B0BE00E53669 /* LMZMoveableCellTableViewUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EEE6A4082694B0BE00E53669 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EEE6A3EF2694B0B900E53669 /* LMZMoveableCellTableView */;
+			targetProxy = EEE6A4072694B0BE00E53669 /* PBXContainerItemProxy */;
+		};
+		EEE6A4132694B0BE00E53669 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EEE6A3EF2694B0B900E53669 /* LMZMoveableCellTableView */;
+			targetProxy = EEE6A4122694B0BE00E53669 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EEE6A3F92694B0B900E53669 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EEE6A3FA2694B0B900E53669 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EEE6A3FE2694B0BE00E53669 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EEE6A3FF2694B0BE00E53669 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EEE6A4182694B0BE00E53669 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EEE6A4192694B0BE00E53669 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EEE6A41B2694B0BE00E53669 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZAEG6YPEMR;
+				INFOPLIST_FILE = LMZMoveableCellTableView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lmz.moveable;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EEE6A41C2694B0BE00E53669 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZAEG6YPEMR;
+				INFOPLIST_FILE = LMZMoveableCellTableView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lmz.moveable;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EEE6A41E2694B0BE00E53669 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZAEG6YPEMR;
+				INFOPLIST_FILE = LMZMoveableCellTableViewTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lmz.moveable.LMZMoveableCellTableViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LMZMoveableCellTableView.app/LMZMoveableCellTableView";
+			};
+			name = Debug;
+		};
+		EEE6A41F2694B0BE00E53669 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZAEG6YPEMR;
+				INFOPLIST_FILE = LMZMoveableCellTableViewTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lmz.moveable.LMZMoveableCellTableViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LMZMoveableCellTableView.app/LMZMoveableCellTableView";
+			};
+			name = Release;
+		};
+		EEE6A4212694B0BE00E53669 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZAEG6YPEMR;
+				INFOPLIST_FILE = LMZMoveableCellTableViewUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lmz.moveable.LMZMoveableCellTableViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LMZMoveableCellTableView;
+			};
+			name = Debug;
+		};
+		EEE6A4222694B0BE00E53669 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZAEG6YPEMR;
+				INFOPLIST_FILE = LMZMoveableCellTableViewUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lmz.moveable.LMZMoveableCellTableViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LMZMoveableCellTableView;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EEE6A3EB2694B0B900E53669 /* Build configuration list for PBXProject "LMZMoveableCellTableView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEE6A4182694B0BE00E53669 /* Debug */,
+				EEE6A4192694B0BE00E53669 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EEE6A41A2694B0BE00E53669 /* Build configuration list for PBXNativeTarget "LMZMoveableCellTableView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEE6A41B2694B0BE00E53669 /* Debug */,
+				EEE6A41C2694B0BE00E53669 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EEE6A41D2694B0BE00E53669 /* Build configuration list for PBXNativeTarget "LMZMoveableCellTableViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEE6A41E2694B0BE00E53669 /* Debug */,
+				EEE6A41F2694B0BE00E53669 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EEE6A4202694B0BE00E53669 /* Build configuration list for PBXNativeTarget "LMZMoveableCellTableViewUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEE6A4212694B0BE00E53669 /* Debug */,
+				EEE6A4222694B0BE00E53669 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EEE6A3E82694B0B900E53669 /* Project object */;
+}
