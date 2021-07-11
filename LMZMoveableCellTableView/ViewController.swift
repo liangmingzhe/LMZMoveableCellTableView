@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,LMZMovableCellTableViewDataSource,LMZMovableCellTableViewDelegate {
-    var dataSource:[NSMutableArray] = [["1111111","2222222","3333333","4444444"],["5555555","6666666"],["I am just a plain text 🧍‍♂️","I am just a plain text 🌈"],["I am just a plain text ㊙️","I am just a plain text 🌈"]]
+    var dataSource:[NSMutableArray] = [["1111111","2222222","3333333","4444444"],["测试1","测试2"],["条件1","条件2"],["场景1","场景2"]]
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -25,7 +25,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
 
     func snapshotViewWithCell(cell: LMZTableViewCell) -> UIView {
-        
         return cell.bgView
     }
 
@@ -43,6 +42,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         dataSource.count
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell :LMZTableViewCell = tableView.dequeueReusableCell(withIdentifier: "111") as! LMZTableViewCell

@@ -175,9 +175,6 @@ class LMZMoveableTableView: UITableView {
         guard let currentIndexPath:IndexPath = indexPathForRow(at: point) else {
             return
         }
-        guard selectedIndexPath != nil else {
-            return
-        }
         if (selectedIndexPath != currentIndexPath) && (selectedIndexPath?.section == currentIndexPath.section) {
             
             guard let selectedCell:UITableViewCell = self.cellForRow(at: selectedIndexPath!) else {
