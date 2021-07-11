@@ -1,5 +1,5 @@
 //
-//  LCTableViewCell.swift
+//  LMZTableViewCell.swift
 //  LMZMoveableCellTableView
 //
 //  Created by lmz on 2021/7/11.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LCTableViewCell: UITableViewCell {
+class LMZTableViewCell: UITableViewCell {
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var title: UILabel!
     

@@ -1,19 +1,19 @@
 //
 //  LMZMoveableTableView.swift
-//  LCIntelligentTableView
+//  LMZIntelligentTableView
 //
 //  Created by mac on 2021/7/7.
 //
 
 import UIKit
-@objc protocol LCMovableCellTableViewDataSource : UITableViewDataSource {
+@objc protocol LMZMovableCellTableViewDataSource : UITableViewDataSource {
     func dataSourceArrayInTableView(tableView:LMZMoveableTableView) -> [NSMutableArray]
-    @objc optional func snapshotViewWithCell(cell:LCTableViewCell) -> UIView
+    @objc optional func snapshotViewWithCell(cell:LMZTableViewCell) -> UIView
     
 }
 
 
-@objc protocol LCMovableCellTableViewDelegate : UITableViewDelegate {
+@objc protocol LMZMovableCellTableViewDelegate : UITableViewDelegate {
     @objc optional func tableView(_ tableView: LMZMoveableTableView, willMoveCellAtIndexPath indexPath: IndexPath)
     @objc optional func tableView(_ tableView: LMZMoveableTableView, tryMoveUnmovableCellAtIndexPath indexPath: IndexPath)
     @objc optional func tableView(_ tableView: LMZMoveableTableView, didMoveCellFromIndexPath indexPath: IndexPath)
@@ -39,16 +39,16 @@ class LMZMoveableTableView: UITableView {
     var canFeedback = false
     var generator = UIImpactFeedbackGenerator()
     var tempDataSource:[NSMutableArray] = []
-    weak open var lmz_dataSource: LCMovableCellTableViewDataSource?
-    weak open var lmz_delegate: LCMovableCellTableViewDelegate?
+    weak open var lmz_dataSource: LMZMovableCellTableViewDataSource?
+    weak open var lmz_delegate: LMZMovableCellTableViewDelegate?
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         if #available(iOS 10.0, *) {
             generator = UIImpactFeedbackGenerator(style: .light)
         }
         
-        lc_initData()
-        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(lc_processGesture(gesture:)))
+        lmz_initData()
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(lmz_processGesture(gesture:)))
         longPressGesture?.minimumPressDuration = 0.5
         self.addGestureRecognizer(longPressGesture!)
     }
@@ -59,32 +59,32 @@ class LMZMoveableTableView: UITableView {
     
     override func willMove(toSuperview newSuperview: UIView?) {
         if newSuperview == nil {
-            self.lc_stopEdgeScroll()
+            self.lmz_stopEdgeScroll()
         }
     }
     
-    func lc_initData() {
+    func lmz_initData() {
 
     }
     
-    func lc_addGesture() {
+    func lmz_addGesture() {
         
     }
     
     
     //长按手势
-    @objc func lc_processGesture(gesture:UILongPressGestureRecognizer) {
+    @objc func lmz_processGesture(gesture:UILongPressGestureRecognizer) {
         switch gesture.state {
         case .began:
-            lc_gestureBegan(gesture: gesture)
+            lmz_gestureBegan(gesture: gesture)
             print("touch began..")
             break
         case .changed:
-            lc_gestureChanged(gesture: gesture)
+            lmz_gestureChanged(gesture: gesture)
             print("touch change..")
             break
         case .cancelled,.ended:
-            lc_gestureEndedOrCancelled(gesture: gesture)
+            lmz_gestureEndedOrCancelled(gesture: gesture)
             print("touch end..")
         default:
             break
@@ -93,7 +93,7 @@ class LMZMoveableTableView: UITableView {
     
     
     //手势开始
-    func lc_gestureBegan(gesture:UILongPressGestureRecognizer) {
+    func lmz_gestureBegan(gesture:UILongPressGestureRecognizer) {
         let point = gesture.location(in: gesture.view)
         let selectedIndex : IndexPath = self.indexPathForRow(at: point)!
             
@@ -118,7 +118,7 @@ class LMZMoveableTableView: UITableView {
         self.lmz_delegate?.tableView?(self, willMoveCellAtIndexPath: selectedIndex)
         
         if canEdgeScroll {
-            self.lc_startEdgeScroll()
+            self.lmz_startEdgeScroll()
         }
         //Get a data source every time you move
         if self.lmz_dataSource != nil {
@@ -133,12 +133,12 @@ class LMZMoveableTableView: UITableView {
         }
         
         if self.lmz_dataSource != nil {
-            guard let snapView = (self.lmz_dataSource!.snapshotViewWithCell?(cell: cell as! LCTableViewCell)) else {
+            guard let snapView = (self.lmz_dataSource!.snapshotViewWithCell?(cell: cell as! LMZTableViewCell)) else {
                 return
             }
-            snapshot = self.lc_snapshotViewWithInputView(inputView: snapView)
+            snapshot = self.lmz_snapshotViewWithInputView(inputView: snapView)
         } else {
-            snapshot = self.lc_snapshotViewWithInputView(inputView: cell)
+            snapshot = self.lmz_snapshotViewWithInputView(inputView: cell)
         }
         
         if self.lmz_delegate?.tableView?(self, customizeMovalbeCell: snapshot) == nil {
@@ -165,7 +165,8 @@ class LMZMoveableTableView: UITableView {
     }
     
     //手势改变
-    func lc_gestureChanged(gesture:UILongPressGestureRecognizer) {
+    func lmz_gestureChanged(gesture:UILongPressGestureRecognizer) {
+        
         var point:CGPoint = gesture.location(in: gesture.view)
         point = CGPoint(x: snapshot.center.x, y: self.limitSnapshotCenterY(targetY: point.y))
         
@@ -177,17 +178,19 @@ class LMZMoveableTableView: UITableView {
         guard selectedIndexPath != nil else {
             return
         }
-        guard let selectedCell:UITableViewCell = self.cellForRow(at: selectedIndexPath!) else {
-            return
-        }
-        selectedCell.isHidden = true
-
-        if ((self.lmz_dataSource?.tableView?(self, canMoveRowAt: currentIndexPath)) == nil) {
-            return
-        }
-        
         if (selectedIndexPath != currentIndexPath) && (selectedIndexPath?.section == currentIndexPath.section) {
-            lc_updateDataSourceAndCellFromIndexPath(from: selectedIndexPath!, to: currentIndexPath)
+            
+            guard let selectedCell:UITableViewCell = self.cellForRow(at: selectedIndexPath!) else {
+                return
+            }
+            selectedCell.isHidden = true
+            
+            if ((self.lmz_dataSource?.tableView?(self, canMoveRowAt: currentIndexPath)) == nil) {
+                return
+            }
+            
+            
+            lmz_updateDataSourceAndCellFromIndexPath(from: selectedIndexPath!, to: currentIndexPath)
             
             self.lmz_delegate?.tableView?(self, didMoveCellFromIndexPath: currentIndexPath)
             selectedIndexPath = currentIndexPath
@@ -196,18 +199,18 @@ class LMZMoveableTableView: UITableView {
     }
     
     //手势结束
-    func lc_gestureEnd(gesture:UILongPressGestureRecognizer) {
+    func lmz_gestureEnd(gesture:UILongPressGestureRecognizer) {
         
     }
     
     
-    func lc_startEdgeScroll() {
-        edgeScrollLink = CADisplayLink.init(target: self, selector: #selector(lc_processEdgeScroll))
+    func lmz_startEdgeScroll() {
+        edgeScrollLink = CADisplayLink.init(target: self, selector: #selector(lmz_processEdgeScroll))
         edgeScrollLink!.add(to: RunLoop.main, forMode: .common)
         
     }
     
-    @objc func lc_processEdgeScroll() {
+    @objc func lmz_processEdgeScroll() {
         let minOffsetY:CGFloat = self.contentOffset.y + edgeScrollTriggerRange
         let maxOffsetY:CGFloat = self.contentOffset.y + self.bounds.size.height - edgeScrollTriggerRange;
         
@@ -227,7 +230,7 @@ class LMZMoveableTableView: UITableView {
         }
         setNeedsLayout()
         layoutIfNeeded()
-        lc_gestureChanged(gesture: longPressGesture!)
+        lmz_gestureChanged(gesture: longPressGesture!)
     }
     
     func limitContentOffsetY(targetOffsetY:CGFloat) ->CGFloat{
@@ -255,12 +258,12 @@ class LMZMoveableTableView: UITableView {
         let maxValue:CGFloat = self.contentOffset.y + self.bounds.size.height - snapshot.bounds.size.height/2.0
         return min(maxValue, max(minValue, targetY));
     }
-    func lc_stopEdgeScroll() {
+    func lmz_stopEdgeScroll() {
         currentScrollSpeedPerFrame = 0;
         edgeScrollLink?.invalidate();
     }
     
-    func lc_updateDataSourceAndCellFromIndexPath(from:IndexPath ,to indexPath:IndexPath) {
+    func lmz_updateDataSourceAndCellFromIndexPath(from:IndexPath ,to indexPath:IndexPath) {
         if #available(iOS 10.0, *) {
             if canFeedback {
                 self.generator.prepare()
@@ -307,10 +310,10 @@ class LMZMoveableTableView: UITableView {
     }
     
     
-    func lc_gestureEndedOrCancelled(gesture:UILongPressGestureRecognizer) {
+    func lmz_gestureEndedOrCancelled(gesture:UILongPressGestureRecognizer) {
             
         if canEdgeScroll {
-            self.lc_stopEdgeScroll()
+            self.lmz_stopEdgeScroll()
         }
         self.lmz_delegate?.tableView?(self, endMoveCellAtIndexPath: selectedIndexPath!)
         
@@ -332,7 +335,7 @@ class LMZMoveableTableView: UITableView {
     }
 
     //获取快照
-    func lc_snapshotViewWithInputView(inputView:UIView) -> UIImageView{
+    func lmz_snapshotViewWithInputView(inputView:UIView) -> UIImageView{
         UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, false, 0)
         guard let ctx = UIGraphicsGetCurrentContext() else { return
             UIImageView()

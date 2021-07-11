@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		EE41A9D82699C9AC009AE9F9 /* LMZMoveableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE41A9D72699C9AC009AE9F9 /* LMZMoveableTableView.swift */; };
-		EE41A9E6269AC2C5009AE9F9 /* LCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE41A9E4269AC2C5009AE9F9 /* LCTableViewCell.swift */; };
-		EE41A9E7269AC2C5009AE9F9 /* LCTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE41A9E5269AC2C5009AE9F9 /* LCTableViewCell.xib */; };
+		EE41A9E6269AC2C5009AE9F9 /* LMZTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE41A9E4269AC2C5009AE9F9 /* LMZTableViewCell.swift */; };
+		EE41A9E7269AC2C5009AE9F9 /* LMZTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE41A9E5269AC2C5009AE9F9 /* LMZTableViewCell.xib */; };
 		EEE6A3F42694B0B900E53669 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE6A3F32694B0B900E53669 /* AppDelegate.swift */; };
 		EEE6A3F62694B0B900E53669 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE6A3F52694B0B900E53669 /* SceneDelegate.swift */; };
 		EEE6A3F82694B0B900E53669 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE6A3F72694B0B900E53669 /* ViewController.swift */; };
@@ -39,8 +39,8 @@
 
 /* Begin PBXFileReference section */
 		EE41A9D72699C9AC009AE9F9 /* LMZMoveableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMZMoveableTableView.swift; sourceTree = "<group>"; };
-		EE41A9E4269AC2C5009AE9F9 /* LCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCTableViewCell.swift; sourceTree = "<group>"; };
-		EE41A9E5269AC2C5009AE9F9 /* LCTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LCTableViewCell.xib; sourceTree = "<group>"; };
+		EE41A9E4269AC2C5009AE9F9 /* LMZTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMZTableViewCell.swift; sourceTree = "<group>"; };
+		EE41A9E5269AC2C5009AE9F9 /* LMZTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LMZTableViewCell.xib; sourceTree = "<group>"; };
 		EEE6A3F02694B0B900E53669 /* LMZMoveableCellTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LMZMoveableCellTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEE6A3F32694B0B900E53669 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEE6A3F52694B0B900E53669 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,8 +109,8 @@
 				EEE6A3F52694B0B900E53669 /* SceneDelegate.swift */,
 				EEE6A3F72694B0B900E53669 /* ViewController.swift */,
 				EE41A9D72699C9AC009AE9F9 /* LMZMoveableTableView.swift */,
-				EE41A9E4269AC2C5009AE9F9 /* LCTableViewCell.swift */,
-				EE41A9E5269AC2C5009AE9F9 /* LCTableViewCell.xib */,
+				EE41A9E4269AC2C5009AE9F9 /* LMZTableViewCell.swift */,
+				EE41A9E5269AC2C5009AE9F9 /* LMZTableViewCell.xib */,
 				EEE6A3F92694B0B900E53669 /* Main.storyboard */,
 				EEE6A3FC2694B0BE00E53669 /* Assets.xcassets */,
 				EEE6A3FE2694B0BE00E53669 /* LaunchScreen.storyboard */,
@@ -242,7 +242,7 @@
 			files = (
 				EEE6A4002694B0BE00E53669 /* LaunchScreen.storyboard in Resources */,
 				EEE6A3FD2694B0BE00E53669 /* Assets.xcassets in Resources */,
-				EE41A9E7269AC2C5009AE9F9 /* LCTableViewCell.xib in Resources */,
+				EE41A9E7269AC2C5009AE9F9 /* LMZTableViewCell.xib in Resources */,
 				EEE6A3FB2694B0B900E53669 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,7 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE41A9E6269AC2C5009AE9F9 /* LCTableViewCell.swift in Sources */,
+				EE41A9E6269AC2C5009AE9F9 /* LMZTableViewCell.swift in Sources */,
 				EE41A9D82699C9AC009AE9F9 /* LMZMoveableTableView.swift in Sources */,
 				EEE6A3F82694B0B900E53669 /* ViewController.swift in Sources */,
 				EEE6A3F42694B0B900E53669 /* AppDelegate.swift in Sources */,

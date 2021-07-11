@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,LCMovableCellTableViewDataSource,LCMovableCellTableViewDelegate {
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,LMZMovableCellTableViewDataSource,LMZMovableCellTableViewDelegate {
     var dataSource:[NSMutableArray] = [["1111111","2222222","3333333","4444444"],["5555555","6666666"],["I am just a plain text 🧍‍♂️","I am just a plain text 🌈"],["I am just a plain text ㊙️","I am just a plain text 🌈"]]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,14 +17,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         tableview.lmz_delegate = self
         tableview.lmz_dataSource = self
         tableview.canFeedback = true
-        tableview.register(UINib (nibName: "LCTableViewCell", bundle: nil), forCellReuseIdentifier: "111")
+        tableview.register(UINib (nibName: "LMZTableViewCell", bundle: nil), forCellReuseIdentifier: "111")
         tableview.dataSource = self
         tableview.delegate = self
         self.view.addSubview(tableview)
         tableview.reloadData()
     }
 
-    func snapshotViewWithCell(cell: LCTableViewCell) -> UIView {
+    func snapshotViewWithCell(cell: LMZTableViewCell) -> UIView {
         
         return cell.bgView
     }
@@ -45,7 +45,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell :LCTableViewCell = tableView.dequeueReusableCell(withIdentifier: "111") as! LCTableViewCell
+        let cell :LMZTableViewCell = tableView.dequeueReusableCell(withIdentifier: "111") as! LMZTableViewCell
         
         cell.title.text = (dataSource[indexPath.section][indexPath.row] as! String)
         return cell
