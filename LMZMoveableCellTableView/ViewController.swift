@@ -8,7 +8,23 @@
 import UIKit
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,LMZMovableCellTableViewDataSource,LMZMovableCellTableViewDelegate {
-    var dataSource:[NSMutableArray] = [["1111111","2222222","3333333","4444444"],["测试1","测试2"],["条件1","条件2"],["场景1","场景2"]]
+    
+    var dataSource:[IMoveableItemSection] = [
+        MoveableItemSection(titleString: "西行纪", sectionHeight: 20, can: true, cells: [
+                                MoveableItemDetail(titleString: "持国天", detailString: "东方守护神", heigh: 60),
+                                MoveableItemDetail(titleString: "帝释天", detailString: "天界首领", heigh: 60),
+                                MoveableItemDetail(titleString: "孙悟空", detailString: "第一妖猴", heigh: 60)])
+        ,
+        MoveableItemSection(titleString: "千古绝尘", sectionHeight: 20, can: true, cells: [
+                                MoveableItemDetail(titleString: "上古主神", detailString: "古帝剑", heigh: 70),
+                                MoveableItemDetail(titleString: "白玦真神", detailString: "太苍神枪", heigh: 70),
+                                MoveableItemDetail(titleString: "天启", detailString: "紫电鞭", heigh: 70)]),
+        MoveableItemSection(titleString: "水浒传", sectionHeight: 20, can: false, cells: [
+                                MoveableItemDetail(titleString: "鲁智深", detailString: "拳打镇关西", heigh: 60),
+                                MoveableItemDetail(titleString: "潘金莲", detailString: "大朗喝药", heigh: 60)]),
+    ]
+
+        
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -20,15 +36,16 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         tableview.register(UINib (nibName: "LMZTableViewCell", bundle: nil), forCellReuseIdentifier: "111")
         tableview.dataSource = self
         tableview.delegate = self
+        tableview.allowsSelection = false
+        tableview.separatorStyle = .none
         self.view.addSubview(tableview)
         tableview.reloadData()
     }
-
-    func snapshotViewWithCell(cell: LMZTableViewCell) -> UIView {
+    func snapshotViewWithCell(cell: IMoveableTableViewCell) -> UIView {
         return cell.bgView
     }
 
-    func dataSourceArrayInTableView(tableView: LMZMoveableTableView) -> [NSMutableArray] {
+    func dataSourceArrayInTableView(tableView: LMZMoveableTableView) -> [IMoveableItemSection] {
         return dataSource
     }
     
@@ -36,7 +53,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        dataSource[section].count
+        dataSource[section].items.count
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         dataSource.count
@@ -48,26 +65,23 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell :LMZTableViewCell = tableView.dequeueReusableCell(withIdentifier: "111") as! LMZTableViewCell
-        
-        cell.title.text = (dataSource[indexPath.section][indexPath.row] as! String)
+        cell.config(cell: dataSource[indexPath.section].items[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        100
+        return dataSource[indexPath.section].items[indexPath.row].cellHeight
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return dataSource[section].height
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        "11111"
+        return dataSource[section].title
     }
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.section == 0 {
-            return true
-        }
-        return false
+        
+        return dataSource[indexPath.section].moveAble
         
     }
     func tableView(_ tableView: LMZMoveableTableView, customizeMovalbeCell movableCellsnapshot: UIImageView) {
@@ -82,5 +96,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
 
     
+    
+    
+
 }
 

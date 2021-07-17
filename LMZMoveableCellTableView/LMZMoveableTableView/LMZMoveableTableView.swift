@@ -6,9 +6,9 @@
 //
 
 import UIKit
-@objc protocol LMZMovableCellTableViewDataSource : UITableViewDataSource {
-    func dataSourceArrayInTableView(tableView:LMZMoveableTableView) -> [NSMutableArray]
-    @objc optional func snapshotViewWithCell(cell:LMZTableViewCell) -> UIView
+protocol LMZMovableCellTableViewDataSource : UITableViewDataSource {
+    func dataSourceArrayInTableView(tableView:LMZMoveableTableView) -> [IMoveableItemSection]
+    func snapshotViewWithCell(cell:IMoveableTableViewCell) -> UIView
     
 }
 
@@ -18,9 +18,7 @@ import UIKit
     @objc optional func tableView(_ tableView: LMZMoveableTableView, tryMoveUnmovableCellAtIndexPath indexPath: IndexPath)
     @objc optional func tableView(_ tableView: LMZMoveableTableView, didMoveCellFromIndexPath indexPath: IndexPath)
     @objc optional func tableView(_ tableView: LMZMoveableTableView, endMoveCellAtIndexPath indexPath: IndexPath)
-    
     @objc optional func tableView(_ tableView: LMZMoveableTableView, customizeMovalbeCell movableCellsnapshot: UIImageView)
-    
     @objc optional func tableView(_ tableView: LMZMoveableTableView, customizeStartMovingAnimation movableCellsnapshot: UIImageView, fingerPoint point:CGPoint)
     
 }
@@ -38,7 +36,7 @@ class LMZMoveableTableView: UITableView {
     var maxScrollSpeedPerFrame:CGFloat = 20
     var canFeedback = false
     var generator = UIImpactFeedbackGenerator()
-    var tempDataSource:[NSMutableArray] = []
+    var tempDataSource:[IMoveableItemSection] = []
     weak open var lmz_dataSource: LMZMovableCellTableViewDataSource?
     weak open var lmz_delegate: LMZMovableCellTableViewDelegate?
     override init(frame: CGRect, style: UITableView.Style) {
@@ -91,16 +89,15 @@ class LMZMoveableTableView: UITableView {
         }
     }
     
-    
     //手势开始
     func lmz_gestureBegan(gesture:UILongPressGestureRecognizer) {
         let point = gesture.location(in: gesture.view)
         let selectedIndex : IndexPath = self.indexPathForRow(at: point)!
             
         let cell:UITableViewCell = self.cellForRow(at: selectedIndex)!
-        
-        if selectedIndex.section != 0 {
-            return
+        //Get a data source every time you move
+        if self.lmz_dataSource != nil {
+            tempDataSource = (self.lmz_dataSource?.dataSourceArrayInTableView(tableView: self))!
         }
         if self.lmz_dataSource?.tableView?(self, canMoveRowAt: selectedIndex) == false {
             if canHintWhenCannotMove {
@@ -111,7 +108,9 @@ class LMZMoveableTableView: UITableView {
                 cell.layer.add(shakeAnimation, forKey: "shake")
                 
             }
+
             self.lmz_delegate?.tableView?(self, tryMoveUnmovableCellAtIndexPath: selectedIndex)
+            
             return
         }
 
@@ -120,10 +119,7 @@ class LMZMoveableTableView: UITableView {
         if canEdgeScroll {
             self.lmz_startEdgeScroll()
         }
-        //Get a data source every time you move
-        if self.lmz_dataSource != nil {
-            tempDataSource = (self.lmz_dataSource?.dataSourceArrayInTableView(tableView: self))!
-        }
+  
         selectedIndexPath = selectedIndex
         if #available(iOS 10.0, *) {
             if canFeedback {
@@ -133,7 +129,7 @@ class LMZMoveableTableView: UITableView {
         }
         
         if self.lmz_dataSource != nil {
-            guard let snapView = (self.lmz_dataSource!.snapshotViewWithCell?(cell: cell as! LMZTableViewCell)) else {
+            guard let snapView = self.lmz_dataSource?.snapshotViewWithCell(cell: cell as! IMoveableTableViewCell) else {
                 return
             }
             snapshot = self.lmz_snapshotViewWithInputView(inputView: snapView)
@@ -175,7 +171,16 @@ class LMZMoveableTableView: UITableView {
         guard let currentIndexPath:IndexPath = indexPathForRow(at: point) else {
             return
         }
-        if (selectedIndexPath != currentIndexPath) && (selectedIndexPath?.section == currentIndexPath.section) {
+        
+        /*
+         不允许不同的section交换
+         
+         */
+        if tempDataSource[currentIndexPath.section].moveAble == false {
+            return
+        }
+        
+        if selectedIndexPath != currentIndexPath {
             
             guard let selectedCell:UITableViewCell = self.cellForRow(at: selectedIndexPath!) else {
                 return
@@ -194,12 +199,7 @@ class LMZMoveableTableView: UITableView {
         }
         
     }
-    
-    //手势结束
-    func lmz_gestureEnd(gesture:UILongPressGestureRecognizer) {
-        
-    }
-    
+
     
     func lmz_startEdgeScroll() {
         edgeScrollLink = CADisplayLink.init(target: self, selector: #selector(lmz_processEdgeScroll))
@@ -268,41 +268,26 @@ class LMZMoveableTableView: UITableView {
             }
         }
         
-        if from.section != indexPath.section {
+        
+        if tempDataSource[indexPath.section].moveAble == false {
             return
         }
-        if self.numberOfSections == 3 {
-            tempDataSource[from.section].exchangeObject(at: from.row, withObjectAt: indexPath.row)
+        
+        if self.numberOfSections == 1 {
+            let tempItem:IMoveableItemDetail = tempDataSource[from.section].items[from.row]
             
+            tempDataSource[from.section].items[from.row] = tempDataSource[indexPath.section].items[indexPath.row]
+            tempDataSource[indexPath.section].items[indexPath.row] = tempItem
             moveRow(at: from, to: indexPath)
         } else {
-            //exchange data
-            print("lmz: ** target index section:\(indexPath.section),row:\(indexPath.row)")
-            //如果是第一组的最后一组非交换。而是添加
-            let fromData = tempDataSource[from.section][from.row]
-            let toData = tempDataSource[indexPath.section][indexPath.row]
-            let fromArray = tempDataSource[from.section]
-            let toArray = tempDataSource[indexPath.section]
+            let tempItem:IMoveableItemDetail = tempDataSource[from.section].items[from.row]
             
-            fromArray.replaceObject(at: from.row, with: toData)
-            toArray.replaceObject(at: indexPath.row, with: fromData)
-            tempDataSource[indexPath.section] = toArray
-            if #available(iOS 11.0, *) {
-                if currentScrollSpeedPerFrame > 10 {
-                    reloadRows(at: [from,indexPath], with: .none)
-                } else {
-                    beginUpdates()
-                    moveRow(at: indexPath, to: from)
-                    moveRow(at: from, to: indexPath)
-                    endUpdates()
-                }
-            } else {
-                beginUpdates()
-                moveRow(at: indexPath, to: from)
-                moveRow(at: from, to: indexPath)
-                endUpdates()
-            }
-            
+            tempDataSource[from.section].items[from.row] = tempDataSource[indexPath.section].items[indexPath.row]
+            tempDataSource[indexPath.section].items[indexPath.row] = tempItem
+            beginUpdates()
+            moveRow(at: indexPath, to: from)
+            moveRow(at: from, to: indexPath)
+            endUpdates()
         }
     }
     

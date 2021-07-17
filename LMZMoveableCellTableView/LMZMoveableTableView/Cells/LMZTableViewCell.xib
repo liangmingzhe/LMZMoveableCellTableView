@@ -20,20 +20,29 @@
                         <rect key="frame" x="5" y="5" width="310" height="78"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dyp-FU-wtf">
-                                <rect key="frame" x="5" y="5" width="120" height="68"/>
+                                <rect key="frame" x="5" y="5" width="120" height="24"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="44g-jK-wzg"/>
                                     <constraint firstAttribute="width" constant="120" id="5XI-pm-TnM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9G-fS-lJ0">
+                                <rect key="frame" x="5" y="29" width="33" height="49"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Dyp-FU-wtf" firstAttribute="top" secondItem="p4t-6G-Eb8" secondAttribute="top" constant="5" id="BQh-bS-5Hw"/>
+                            <constraint firstAttribute="bottom" secondItem="v9G-fS-lJ0" secondAttribute="bottom" id="77m-yF-OHx"/>
                             <constraint firstItem="Dyp-FU-wtf" firstAttribute="leading" secondItem="p4t-6G-Eb8" secondAttribute="leading" constant="5" id="Dix-cm-fbR"/>
-                            <constraint firstAttribute="bottom" secondItem="Dyp-FU-wtf" secondAttribute="bottom" constant="5" id="bNk-f4-Pr6"/>
+                            <constraint firstItem="v9G-fS-lJ0" firstAttribute="leading" secondItem="Dyp-FU-wtf" secondAttribute="leading" id="OsM-o6-Ir1"/>
+                            <constraint firstItem="Dyp-FU-wtf" firstAttribute="top" secondItem="p4t-6G-Eb8" secondAttribute="top" constant="5" id="Xcg-8K-Lck"/>
+                            <constraint firstItem="v9G-fS-lJ0" firstAttribute="top" secondItem="Dyp-FU-wtf" secondAttribute="bottom" id="uKc-Bs-YNE"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -46,7 +55,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="bgView" destination="p4t-6G-Eb8" id="KqZ-sc-NOC"/>
+                <outlet property="bkgView" destination="p4t-6G-Eb8" id="sDy-bi-4LS"/>
+                <outlet property="detail" destination="v9G-fS-lJ0" id="kSV-8G-gdF"/>
                 <outlet property="title" destination="Dyp-FU-wtf" id="PdB-lq-QdE"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="95.089285714285708"/>

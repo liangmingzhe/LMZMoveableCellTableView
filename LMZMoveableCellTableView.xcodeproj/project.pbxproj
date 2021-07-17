@@ -10,7 +10,7 @@
 		EE41A9D82699C9AC009AE9F9 /* LMZMoveableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE41A9D72699C9AC009AE9F9 /* LMZMoveableTableView.swift */; };
 		EE41A9E6269AC2C5009AE9F9 /* LMZTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE41A9E4269AC2C5009AE9F9 /* LMZTableViewCell.swift */; };
 		EE41A9E7269AC2C5009AE9F9 /* LMZTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE41A9E5269AC2C5009AE9F9 /* LMZTableViewCell.xib */; };
-		EE41A9FA269B3F4E009AE9F9 /* LMZCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE41A9F9269B3F4E009AE9F9 /* LMZCellModel.m */; };
+		EE8755D826A330AA00BF9523 /* IMoveableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8755D726A330AA00BF9523 /* IMoveableTableViewCell.swift */; };
 		EEE6A3F42694B0B900E53669 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE6A3F32694B0B900E53669 /* AppDelegate.swift */; };
 		EEE6A3F62694B0B900E53669 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE6A3F52694B0B900E53669 /* SceneDelegate.swift */; };
 		EEE6A3F82694B0B900E53669 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE6A3F72694B0B900E53669 /* ViewController.swift */; };
@@ -42,9 +42,7 @@
 		EE41A9D72699C9AC009AE9F9 /* LMZMoveableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMZMoveableTableView.swift; sourceTree = "<group>"; };
 		EE41A9E4269AC2C5009AE9F9 /* LMZTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMZTableViewCell.swift; sourceTree = "<group>"; };
 		EE41A9E5269AC2C5009AE9F9 /* LMZTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LMZTableViewCell.xib; sourceTree = "<group>"; };
-		EE41A9F7269B3F4E009AE9F9 /* LMZMoveableCellTableView-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LMZMoveableCellTableView-Bridging-Header.h"; sourceTree = "<group>"; };
-		EE41A9F8269B3F4E009AE9F9 /* LMZCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LMZCellModel.h; sourceTree = "<group>"; };
-		EE41A9F9269B3F4E009AE9F9 /* LMZCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LMZCellModel.m; sourceTree = "<group>"; };
+		EE8755D726A330AA00BF9523 /* IMoveableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMoveableTableViewCell.swift; sourceTree = "<group>"; };
 		EEE6A3F02694B0B900E53669 /* LMZMoveableCellTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LMZMoveableCellTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEE6A3F32694B0B900E53669 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEE6A3F52694B0B900E53669 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +84,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE0731E726A355A4004E0F43 /* LMZMoveableTableView */ = {
+			isa = PBXGroup;
+			children = (
+				EE41A9D72699C9AC009AE9F9 /* LMZMoveableTableView.swift */,
+				EE8755DF26A3359300BF9523 /* Protocol */,
+				EE8755E026A335A800BF9523 /* Cells */,
+			);
+			path = LMZMoveableTableView;
+			sourceTree = "<group>";
+		};
+		EE8755DF26A3359300BF9523 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				EE8755D726A330AA00BF9523 /* IMoveableTableViewCell.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		EE8755E026A335A800BF9523 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EE41A9E4269AC2C5009AE9F9 /* LMZTableViewCell.swift */,
+				EE41A9E5269AC2C5009AE9F9 /* LMZTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		EEE6A3E72694B0B900E53669 = {
 			isa = PBXGroup;
 			children = (
@@ -112,16 +137,11 @@
 				EEE6A3F32694B0B900E53669 /* AppDelegate.swift */,
 				EEE6A3F52694B0B900E53669 /* SceneDelegate.swift */,
 				EEE6A3F72694B0B900E53669 /* ViewController.swift */,
-				EE41A9D72699C9AC009AE9F9 /* LMZMoveableTableView.swift */,
-				EE41A9E4269AC2C5009AE9F9 /* LMZTableViewCell.swift */,
-				EE41A9F8269B3F4E009AE9F9 /* LMZCellModel.h */,
-				EE41A9F9269B3F4E009AE9F9 /* LMZCellModel.m */,
-				EE41A9E5269AC2C5009AE9F9 /* LMZTableViewCell.xib */,
+				EE0731E726A355A4004E0F43 /* LMZMoveableTableView */,
 				EEE6A3F92694B0B900E53669 /* Main.storyboard */,
 				EEE6A3FC2694B0BE00E53669 /* Assets.xcassets */,
 				EEE6A3FE2694B0BE00E53669 /* LaunchScreen.storyboard */,
 				EEE6A4012694B0BE00E53669 /* Info.plist */,
-				EE41A9F7269B3F4E009AE9F9 /* LMZMoveableCellTableView-Bridging-Header.h */,
 			);
 			path = LMZMoveableCellTableView;
 			sourceTree = "<group>";
@@ -279,7 +299,7 @@
 				EE41A9E6269AC2C5009AE9F9 /* LMZTableViewCell.swift in Sources */,
 				EE41A9D82699C9AC009AE9F9 /* LMZMoveableTableView.swift in Sources */,
 				EEE6A3F82694B0B900E53669 /* ViewController.swift in Sources */,
-				EE41A9FA269B3F4E009AE9F9 /* LMZCellModel.m in Sources */,
+				EE8755D826A330AA00BF9523 /* IMoveableTableViewCell.swift in Sources */,
 				EEE6A3F42694B0B900E53669 /* AppDelegate.swift in Sources */,
 				EEE6A3F62694B0B900E53669 /* SceneDelegate.swift in Sources */,
 			);
@@ -467,7 +487,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lmz.moveable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "LMZMoveableCellTableView/LMZMoveableCellTableView-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -489,7 +508,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lmz.moveable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "LMZMoveableCellTableView/LMZMoveableCellTableView-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
