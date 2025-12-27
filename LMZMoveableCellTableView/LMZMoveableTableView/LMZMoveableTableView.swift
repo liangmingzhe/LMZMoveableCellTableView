@@ -162,42 +162,49 @@ class LMZMoveableTableView: UITableView {
     
     //手势改变
     func lmz_gestureChanged(gesture:UILongPressGestureRecognizer) {
+        guard let selectedIndexPath = selectedIndexPath else {
+            return
+        }
         
-        var point:CGPoint = gesture.location(in: gesture.view)
-        point = CGPoint(x: snapshot.center.x, y: self.limitSnapshotCenterY(targetY: point.y))
+        var point: CGPoint = gesture.location(in: gesture.view)
+        let limitedY = self.limitSnapshotCenterY(targetY: point.y)
+        point = CGPoint(x: snapshot.center.x, y: limitedY)
         
-        //Let the screenshot follow the gesture
-        snapshot.center = point;
-        guard let currentIndexPath:IndexPath = indexPathForRow(at: point) else {
+        // Let the screenshot follow the gesture
+        snapshot.center = point
+        
+        // 使用snapshot的center来查找对应的indexPath，更准确
+        guard let currentIndexPath: IndexPath = indexPathForRow(at: point) else {
+            // 如果找不到indexPath，说明snapshot在边界位置，保持当前位置即可
             return
         }
         
         /*
          不允许不同的section交换
-         
          */
+        if currentIndexPath.section >= tempDataSource.count {
+            return
+        }
+        
         if tempDataSource[currentIndexPath.section].moveAble == false {
             return
         }
         
         if selectedIndexPath != currentIndexPath {
-            
-            guard let selectedCell:UITableViewCell = self.cellForRow(at: selectedIndexPath!) else {
+            guard let selectedCell: UITableViewCell = self.cellForRow(at: selectedIndexPath) else {
                 return
             }
             selectedCell.isHidden = true
             
-            if ((self.lmz_dataSource?.tableView?(self, canMoveRowAt: currentIndexPath)) == nil) {
+            if self.lmz_dataSource?.tableView?(self, canMoveRowAt: currentIndexPath) == false {
                 return
             }
             
-            
-            lmz_updateDataSourceAndCellFromIndexPath(from: selectedIndexPath!, to: currentIndexPath)
+            lmz_updateDataSourceAndCellFromIndexPath(from: selectedIndexPath, to: currentIndexPath)
             
             self.lmz_delegate?.tableView?(self, didMoveCellFromIndexPath: currentIndexPath)
-            selectedIndexPath = currentIndexPath
+            self.selectedIndexPath = currentIndexPath
         }
-        
     }
 
     
@@ -208,26 +215,58 @@ class LMZMoveableTableView: UITableView {
     }
     
     @objc func lmz_processEdgeScroll() {
-        let minOffsetY:CGFloat = self.contentOffset.y + edgeScrollTriggerRange
-        let maxOffsetY:CGFloat = self.contentOffset.y + self.bounds.size.height - edgeScrollTriggerRange;
+        guard let gesture = longPressGesture else {
+            return
+        }
         
-        let touchPoint:CGPoint = snapshot.center;
+        // 使用手势的真实位置来判断是否需要滚动，而不是snapshot.center
+        // 这样可以避免因为snapshot被限制导致的判断错误
+        let touchPoint: CGPoint = gesture.location(in: self)
+        
+        // 计算触发边缘滚动的区域，考虑contentInset
+        var topInset: CGFloat = 0
+        var bottomInset: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            topInset = self.adjustedContentInset.top
+            bottomInset = self.adjustedContentInset.bottom
+        } else {
+            topInset = self.contentInset.top
+            bottomInset = self.contentInset.bottom
+        }
+        
+        let minOffsetY: CGFloat = topInset + edgeScrollTriggerRange
+        let maxOffsetY: CGFloat = self.bounds.size.height - bottomInset - edgeScrollTriggerRange
+        
+        var shouldScroll = false
+        var newContentOffsetY: CGFloat = self.contentOffset.y
         
         if touchPoint.y < minOffsetY {
-            //Cell is moving up
-            let moveDistance:CGFloat = (minOffsetY - touchPoint.y)/edgeScrollTriggerRange * maxScrollSpeedPerFrame
+            // Cell is moving up - 向上滚动
+            let moveDistance: CGFloat = (minOffsetY - touchPoint.y) / edgeScrollTriggerRange * maxScrollSpeedPerFrame
             currentScrollSpeedPerFrame = moveDistance
-            
-            self.contentOffset = CGPoint(x: self.contentOffset.x, y: self.limitContentOffsetY(targetOffsetY: self.contentOffset.y - moveDistance))
+            newContentOffsetY = self.limitContentOffsetY(targetOffsetY: self.contentOffset.y - moveDistance)
+            shouldScroll = true
         } else if touchPoint.y > maxOffsetY {
-            //Cell is moving down
-            let moveDistance:CGFloat = (touchPoint.y - maxOffsetY)/edgeScrollTriggerRange * maxScrollSpeedPerFrame;
-            currentScrollSpeedPerFrame = moveDistance;
-            self.contentOffset = CGPoint(x:self.contentOffset.x, y: self.limitContentOffsetY(targetOffsetY: self.contentOffset.y + moveDistance));
+            // Cell is moving down - 向下滚动
+            let moveDistance: CGFloat = (touchPoint.y - maxOffsetY) / edgeScrollTriggerRange * maxScrollSpeedPerFrame
+            currentScrollSpeedPerFrame = moveDistance
+            newContentOffsetY = self.limitContentOffsetY(targetOffsetY: self.contentOffset.y + moveDistance)
+            shouldScroll = true
+        } else {
+            currentScrollSpeedPerFrame = 0
         }
-        setNeedsLayout()
-        layoutIfNeeded()
-        lmz_gestureChanged(gesture: longPressGesture!)
+        
+        if shouldScroll && newContentOffsetY != self.contentOffset.y {
+            // 更新contentOffset
+            self.contentOffset = CGPoint(x: self.contentOffset.x, y: newContentOffsetY)
+            
+            // 强制布局更新，确保cell位置正确
+            setNeedsLayout()
+            layoutIfNeeded()
+        }
+        
+        // 无论是否滚动，都需要更新snapshot位置和cell位置
+        lmz_gestureChanged(gesture: gesture)
     }
     
     func limitContentOffsetY(targetOffsetY:CGFloat) ->CGFloat{
@@ -247,13 +286,32 @@ class LMZMoveableTableView: UITableView {
         if contentSizeHeight > self.bounds.size.height {
             maxContentOffsetY += contentSizeHeight - self.bounds.size.height
         }
-        return min(maxContentOffsetY, max(minContentOffsetY, targetOffsetY))
+        // 修复逻辑：限制targetOffsetY在minContentOffsetY和maxContentOffsetY之间
+        return max(minContentOffsetY, min(maxContentOffsetY, targetOffsetY))
     }
     
     func limitSnapshotCenterY(targetY:CGFloat) -> CGFloat {
-        let minValue:CGFloat = snapshot.bounds.size.height/2.0 + self.contentOffset.y
-        let maxValue:CGFloat = self.contentOffset.y + self.bounds.size.height - snapshot.bounds.size.height/2.0
-        return min(maxValue, max(minValue, targetY));
+        // snapshot是直接添加到tableView上的，位置相对于tableView的bounds
+        // 不需要考虑contentOffset，只需要确保不超出可见区域
+        
+        var topInset: CGFloat = 0
+        var bottomInset: CGFloat = 0
+        if #available(iOS 11.0, *) {
+            topInset = self.adjustedContentInset.top
+            bottomInset = self.adjustedContentInset.bottom
+        } else {
+            topInset = self.contentInset.top
+            bottomInset = self.contentInset.bottom
+        }
+        
+        // 最小Y值：确保snapshot的上边缘不超出tableView可见区域的顶部
+        let minValue: CGFloat = topInset + snapshot.bounds.size.height / 2.0
+        
+        // 最大Y值：确保snapshot的下边缘不超出tableView可见区域的底部
+        let maxValue: CGFloat = self.bounds.size.height - bottomInset - snapshot.bounds.size.height / 2.0
+        
+        // 限制targetY在有效范围内
+        return max(minValue, min(maxValue, targetY))
     }
     func lmz_stopEdgeScroll() {
         currentScrollSpeedPerFrame = 0;
