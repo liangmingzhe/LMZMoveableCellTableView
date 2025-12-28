@@ -92,13 +92,23 @@ class LMZMoveableTableView: UITableView {
     //手势开始
     func lmz_gestureBegan(gesture:UILongPressGestureRecognizer) {
         let point = gesture.location(in: gesture.view)
-        let selectedIndex : IndexPath = self.indexPathForRow(at: point)!
-            
-        let cell:UITableViewCell = self.cellForRow(at: selectedIndex)!
-        //Get a data source every time you move
-        if self.lmz_dataSource != nil {
-            tempDataSource = (self.lmz_dataSource?.dataSourceArrayInTableView(tableView: self))!
+        
+        // 检查是否点击在有效的 cell 上，如果不是则直接返回
+        guard let selectedIndex = self.indexPathForRow(at: point) else {
+            return
         }
+        
+        guard let cell = self.cellForRow(at: selectedIndex) else {
+            return
+        }
+        
+        //Get a data source every time you move
+        if let dataSource = self.lmz_dataSource?.dataSourceArrayInTableView(tableView: self) {
+            tempDataSource = dataSource
+        } else {
+            return
+        }
+        
         if self.lmz_dataSource?.tableView?(self, canMoveRowAt: selectedIndex) == false {
             if canHintWhenCannotMove {
                 /*...*/
@@ -129,7 +139,9 @@ class LMZMoveableTableView: UITableView {
         }
         
         if self.lmz_dataSource != nil {
-            guard let snapView = self.lmz_dataSource?.snapshotViewWithCell(cell: cell as! IMoveableTableViewCell) else {
+            // 安全地将cell转换为IMoveableTableViewCell
+            guard let moveableCell = cell as? IMoveableTableViewCell,
+                  let snapView = self.lmz_dataSource?.snapshotViewWithCell(cell: moveableCell) else {
                 return
             }
             snapshot = self.lmz_snapshotViewWithInputView(inputView: snapView)
@@ -351,17 +363,21 @@ class LMZMoveableTableView: UITableView {
     
     
     func lmz_gestureEndedOrCancelled(gesture:UILongPressGestureRecognizer) {
-            
         if canEdgeScroll {
             self.lmz_stopEdgeScroll()
         }
-        self.lmz_delegate?.tableView?(self, endMoveCellAtIndexPath: selectedIndexPath!)
         
-        
-        guard (selectedIndexPath != nil) else {
+        guard let selectedIndexPath = selectedIndexPath else {
             return
         }
-        let cell:UITableViewCell = cellForRow(at: selectedIndexPath!) ?? UITableViewCell()
+        
+        self.lmz_delegate?.tableView?(self, endMoveCellAtIndexPath: selectedIndexPath)
+        
+        guard let cell = cellForRow(at: selectedIndexPath) else {
+            // 如果cell不存在，清理snapshot并返回
+            snapshot.removeFromSuperview()
+            return
+        }
         UIView.animate(withDuration: 0.25) {  [self] in
             snapshot.transform = CGAffineTransform.identity;
             snapshot.frame = CGRect(x:(cell.frame.size.width - snapshot.frame.size.width)/2.0,
